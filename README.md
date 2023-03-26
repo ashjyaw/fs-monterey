@@ -2,7 +2,6 @@
 
 - A social marketplace
 - Full stack web application
-- Group project for [CSE 187](https://courses.engineering.ucsc.edu/courses/cse187)
 
 ## Team Resources
 
