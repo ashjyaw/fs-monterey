@@ -1,0 +1,71 @@
+{
+  "name": "baskin-microservice-image",
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "*",
+    "@types/jest": "*",
+    "@types/multer": "*",
+    "@types/node": "*",
+    "@types/supertest": "*",
+    "@types/swagger-ui-express": "*",
+    "@types/uuid": "*",
+    "concurrently": "*",
+    "eslint": "*",
+    "jest": "*",
+    "nodemon": "*",
+    "supertest": "*",
+    "ts-jest": "*",
+    "ts-node": "*",
+    "typescript": "*"
+  },
+  "dependencies": {
+    "@types/sharp": "^0.31.1",
+    "cors": "^2.8.5",
+    "express": "*",
+    "multer": "*",
+    "sharp": "^0.31.3",
+    "swagger-ui-express": "*",
+    "tsoa": "*",
+    "uuid": "*"
+  },
+  "scripts": {
+    "prebuild": "npm run swagger",
+    "build": "tsc",
+    "start": "node build/src/server.js",
+    "swagger": "tsoa spec-and-routes",
+    "predev": "npm run swagger",
+    "dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
+    "pretest": "npm run swagger",
+    "test": "jest --coverage",
+    "lint": "eslint ./src/* --fix"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": "ts",
+    "exec": "ts-node src/server.ts"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testTimeout": 1000,
+    "collectCoverageFrom": [
+      "src/**/*.[jt]s"
+    ],
+    "coveragePathIgnorePatterns": [
+      "src/server.[jt]s"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    },
+    "testMatch": [
+      "**/?(*.)+(spec|test).[jt]s?(x)"
+    ]
+  }
+}
